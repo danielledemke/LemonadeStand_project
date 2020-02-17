@@ -15,8 +15,10 @@ namespace LemonadeStand_3DayStarter
         //constructor
         public Day()
         {
+            
             weather = new Weather();
             SetAmountOfCustomers();
+            
         }
 
         //member methods
@@ -29,6 +31,7 @@ namespace LemonadeStand_3DayStarter
                 for(int i = 0; i < 40; i++)
                 {
                     customers.Add(new Customer());
+                    
                 }
             }
             if (weather.condition == "Cloudy" && weather.temperature > 70)
@@ -72,6 +75,24 @@ namespace LemonadeStand_3DayStarter
                 }
             }
 
+        }
+
+        public void DisplayAmountOfCustomers()
+        {
+            Console.WriteLine("There are " + customers.Count + " potential customers outside today!");
+            Console.WriteLine("Press enter when you are ready to see who purchases lemonade!");
+            Console.ReadLine();
+        }
+
+        public void GetCustomersToDecide(Player player, Weather weather, Random random)
+        {
+
+                foreach(Customer customer in customers)
+                {
+                    customer.DecideToPurchase(player, weather, random);
+
+                }
+            
         }
 
     }

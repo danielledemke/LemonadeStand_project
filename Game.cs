@@ -11,16 +11,17 @@ namespace LemonadeStand_3DayStarter
         //member variables
         private Player player;
         private List<Day> days;
-        private int currentDay;
+        private static int currentDayNumber;
+        public Random random;
         
 
         //constructor
         public Game()
         {
-            Player player = new Player();
-            Day day = new Day();
-            Console.WriteLine("The weather is currently " + day.weather.condition + " with a temperature of " + day.weather.temperature + " degrees");
-            Console.ReadLine();
+            player = new Player();
+            random = new Random();
+            PlayOneFullDay();
+            
         }
 
         //member methods
@@ -29,6 +30,23 @@ namespace LemonadeStand_3DayStarter
 
         }
 
+        public void PlayOneFullDay()
+        {
+            currentDayNumber++;
+            Console.WriteLine("Welcome to Day " + currentDayNumber);
+            Day day = new Day();
+            Console.WriteLine("The weather for today is " + day.weather.condition + " with a temperature of " + day.weather.temperature + " degrees");
+            Store store = new Store();
 
+            store.SellLemons(player);
+            store.SellIceCubes(player);
+            store.SellSugarCubes(player);
+            store.SellCups(player);
+            player.ChooseRecipe();
+            day.DisplayAmountOfCustomers();
+            day.GetCustomersToDecide(player, day.weather, random);
+            Console.ReadLine();
+        }
+        
     }
 }

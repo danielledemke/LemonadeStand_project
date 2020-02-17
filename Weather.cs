@@ -47,14 +47,14 @@ namespace LemonadeStand_3DayStarter
         }
         private int SetRandomTemperature()
         {
-            Random random = new Random();
+            random = new Random();
             int temperatureNumber = random.Next(50, 90);
             return temperatureNumber;
         }
 
         private int GetRandomNumber()
         {
-            Random random = new Random();
+            random = new Random();
             int result = random.Next(1, 4);
             return result;
         }
