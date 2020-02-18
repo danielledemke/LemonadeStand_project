@@ -87,13 +87,16 @@ namespace LemonadeStand_3DayStarter
 
         public void GetCustomersToDecide(Player player, Weather weather, Random random, Pitcher pitcher)
         {
-            
                 foreach(Customer customer in customers)
                 {
                  player.KeepLemonadeStocked();
                  customer.DecideToPurchase(player, weather, random, pitcher);
                     
                 }
+                if(pitcher.cupsLeftInPitcher == 0)
+            {
+                Console.WriteLine("You ran out of lemonade to sell!"); 
+            }
         }
 
     }

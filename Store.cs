@@ -18,9 +18,9 @@ namespace LemonadeStand_3DayStarter
         public Store()
         {
             pricePerLemon = .5;
-            pricePerSugarCube = .1;
+            pricePerSugarCube = .05;
             pricePerIceCube = .02;
-            pricePerCup = .25;
+            pricePerCup = .10;
         }
 
         // member methods (CAN DO)

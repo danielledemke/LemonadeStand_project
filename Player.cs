@@ -42,11 +42,9 @@ namespace LemonadeStand_3DayStarter
 
         public void MakePitcher()
         {
-           
             {
-                
                 pitcher.cupsLeftInPitcher = 10;
-                inventory.lemons.RemoveRange(0, recipe.amountOfLemons);
+                inventory.lemons.RemoveRange(0,recipe.amountOfLemons);
                 inventory.iceCubes.RemoveRange(0, recipe.amountOfIceCubes);
                 inventory.sugarCubes.RemoveRange(0, recipe.amountOfSugarCubes);
                 inventory.cups.RemoveRange(0, 10);
@@ -56,7 +54,7 @@ namespace LemonadeStand_3DayStarter
         }
         public void SetUserName()
         {
-            Console.WriteLine("Please enter name for your player: \n");
+            Console.WriteLine("So what is your name?: \n");
             name = Console.ReadLine();
         }
 
@@ -84,10 +82,7 @@ namespace LemonadeStand_3DayStarter
             {
                 MakePitcher();
             }
-            else 
-            {
-                Console.WriteLine("You do not have enough ingredients to make a pitcher of lemonade :(");
-            }
+            
         }
     }
 }

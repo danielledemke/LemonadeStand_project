@@ -18,6 +18,7 @@ namespace LemonadeStand_3DayStarter
         //constructor
         public Game()
         {
+            UserInterface.DisplayGameRules();
             player = new Player();
             random = new Random();
             RepeatDay();
@@ -25,15 +26,12 @@ namespace LemonadeStand_3DayStarter
         }
 
         //member methods
-        public void ShowGameRules()
-        {
-
-        }
+        
 
         public void PlayOneFullDay()
         {
             currentDayNumber++;
-            Console.WriteLine("Welcome to Day " + currentDayNumber);
+            Console.WriteLine(player.name + ", welcome to Day " + currentDayNumber);
             Day day = new Day();
             Console.WriteLine("The weather for today is " + day.weather.condition + " with a temperature of " + day.weather.temperature + " degrees");
             Console.WriteLine("You currently have $" + player.wallet.Money);
@@ -42,13 +40,11 @@ namespace LemonadeStand_3DayStarter
             store.SellIceCubes(player);
             store.SellSugarCubes(player);
             store.SellCups(player);
-            player.ChooseRecipe();
-            
-            
+            player.ChooseRecipe();         
             day.DisplayAmountOfCustomers();
             day.GetCustomersToDecide(player, day.weather, random, player.pitcher);
-            
             Console.WriteLine("After today's sales, you have a total of $" + player.wallet.Money);
+            Console.WriteLine("Press enter when ready to begin the next day!");
             Console.ReadLine();
         }
         
