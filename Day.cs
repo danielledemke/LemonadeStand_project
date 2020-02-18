@@ -11,6 +11,7 @@ namespace LemonadeStand_3DayStarter
         //member variables
         public Weather weather;
         public List<Customer> customers;
+        public int numberOfSales;
 
         //constructor
         public Day()
@@ -25,19 +26,19 @@ namespace LemonadeStand_3DayStarter
         public void SetAmountOfCustomers()
         {
             
-            if(weather.condition == "Sunny" && weather.temperature > 70)
+            if(weather.condition == "Sunny" && weather.temperature >= 70)
             {
                 customers = new List<Customer>();
-                for(int i = 0; i < 40; i++)
+                for(int i = 0; i < 60; i++)
                 {
                     customers.Add(new Customer());
                     
                 }
             }
-            if (weather.condition == "Cloudy" && weather.temperature > 70)
+            if (weather.condition == "Cloudy" && weather.temperature >= 70)
             {
                 customers = new List<Customer>();
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < 45; i++)
                 {
                     customers.Add(new Customer());
                 }
@@ -45,7 +46,7 @@ namespace LemonadeStand_3DayStarter
             if (weather.condition == "Sunny" && weather.temperature < 70)
             {
                 customers = new List<Customer>();
-                for (int i = 0; i < 35; i++)
+                for (int i = 0; i < 50; i++)
                 {
                     customers.Add(new Customer());
                 }
@@ -53,15 +54,15 @@ namespace LemonadeStand_3DayStarter
             if (weather.condition == "Cloudy" && weather.temperature < 70)
             {
                 customers = new List<Customer>();
-                for (int i = 0; i < 25; i++)
+                for (int i = 0; i < 35; i++)
                 {
                     customers.Add(new Customer());
                 }
             }
-            if(weather.condition == "Rainy" && weather.temperature > 70)
+            if(weather.condition == "Rainy" && weather.temperature >= 70)
             {
                 customers = new List<Customer>();
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 25; i++)
                 {
                     customers.Add(new Customer());
                 }
@@ -69,7 +70,7 @@ namespace LemonadeStand_3DayStarter
             if (weather.condition == "Rainy" && weather.temperature < 70)
             {
                 customers = new List<Customer>();
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i < 20; i++)
                 {
                     customers.Add(new Customer());
                 }
@@ -84,15 +85,15 @@ namespace LemonadeStand_3DayStarter
             Console.ReadLine();
         }
 
-        public void GetCustomersToDecide(Player player, Weather weather, Random random)
+        public void GetCustomersToDecide(Player player, Weather weather, Random random, Pitcher pitcher)
         {
-
+            
                 foreach(Customer customer in customers)
                 {
-                    customer.DecideToPurchase(player, weather, random);
-
+                 player.KeepLemonadeStocked();
+                 customer.DecideToPurchase(player, weather, random, pitcher);
+                    
                 }
-            
         }
 
     }

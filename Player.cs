@@ -21,6 +21,7 @@ namespace LemonadeStand_3DayStarter
             inventory = new Inventory();
             wallet = new Wallet();
             SetUserName();
+            pitcher = new Pitcher();
         }
 
         // member methods (CAN DO)
@@ -31,7 +32,7 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("How many lemons per pitcher would you like to use?");
             recipe.amountOfLemons = int.Parse(Console.ReadLine());
             Console.WriteLine("How many sugar cubes per pitcher would you like to use?");
-            recipe.amountOfLemons = int.Parse(Console.ReadLine());
+            recipe.amountOfSugarCubes = int.Parse(Console.ReadLine());
             Console.WriteLine("How many ice cubes per pitcher would you like to use?");
             recipe.amountOfIceCubes = int.Parse(Console.ReadLine());
             Console.WriteLine("How much would you like to charge per cup?");
@@ -41,12 +42,17 @@ namespace LemonadeStand_3DayStarter
 
         public void MakePitcher()
         {
-            pitcher = new Pitcher();
-            inventory.lemons.RemoveRange(0, recipe.amountOfLemons);
-            inventory.iceCubes.RemoveRange(0, recipe.amountOfIceCubes);
-            inventory.sugarCubes.RemoveRange(0, recipe.amountOfSugarCubes);
-            inventory.cups.RemoveRange(0, 10);
-
+           
+            {
+                
+                pitcher.cupsLeftInPitcher = 10;
+                inventory.lemons.RemoveRange(0, recipe.amountOfLemons);
+                inventory.iceCubes.RemoveRange(0, recipe.amountOfIceCubes);
+                inventory.sugarCubes.RemoveRange(0, recipe.amountOfSugarCubes);
+                inventory.cups.RemoveRange(0, 10);
+                Console.WriteLine("You have made a pitcher of lemonade");
+            }
+           
         }
         public void SetUserName()
         {
@@ -54,5 +60,34 @@ namespace LemonadeStand_3DayStarter
             name = Console.ReadLine();
         }
 
+        public void KeepLemonadeStocked()
+        {
+            bool isValid = true;
+            while (isValid)
+            {
+                if (pitcher.cupsLeftInPitcher == 0)
+                {
+                    CheckInventoryAmount();
+                    
+                    isValid = false;
+                }
+                else
+                {
+                    isValid = false;
+                }
+            }
+            
+        }
+        public void CheckInventoryAmount()
+        {
+            if (inventory.lemons.Count >= recipe.amountOfLemons && inventory.sugarCubes.Count >= recipe.amountOfSugarCubes && inventory.iceCubes.Count >= recipe.amountOfIceCubes && inventory.cups.Count >= 10)
+            {
+                MakePitcher();
+            }
+            else 
+            {
+                Console.WriteLine("You do not have enough ingredients to make a pitcher of lemonade :(");
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace LemonadeStand_3DayStarter
         private double priceWillingToPay;
         public string name;
         public static int nameNumber;
+        public bool didPurchase;
 
         //constructor
         public Customer()
@@ -29,7 +30,7 @@ namespace LemonadeStand_3DayStarter
         public int GetRandom(Random random)
         {
             
-            int randomInt = random.Next(1, 4);
+            int randomInt = random.Next(1, 5);
             return randomInt;
         }
 
@@ -39,33 +40,46 @@ namespace LemonadeStand_3DayStarter
 
             if(number == 1)
             {
-                priceWillingToPay = .25;
+                priceWillingToPay = .30;
             }
             else if(number == 2)
             {
-                priceWillingToPay = .35;
+                priceWillingToPay = .25;
             }
             else if(number == 3 || weather.temperature >= 80)
             {
                 priceWillingToPay = .50;
             }
+            else if(number == 4 || weather.temperature <= 50)
+            {
+                priceWillingToPay = .15;
+            }
         }
 
-        public void DecideToPurchase(Player player, Weather weather, Random random)
+        public void DecideToPurchase(Player player, Weather weather, Random random, Pitcher pitcher)
         {
             
             GetPriceWillingToPay(weather, random);
-            if(priceWillingToPay >= player.recipe.pricePerCup && player.recipe.pricePerCup < customerMoney)
+            if(priceWillingToPay >= player.recipe.pricePerCup && player.recipe.pricePerCup < customerMoney && pitcher.cupsLeftInPitcher > 0)
             {
-                PurchaseLemonadeFromPlayer(player);
-                Console.WriteLine(name + " has decided to purchase cup of lemonade!");
+                PurchaseLemonadeFromPlayer(player, pitcher);
+                
             }
+           
             
         }
-        public void PurchaseLemonadeFromPlayer(Player player)
+        public void PurchaseLemonadeFromPlayer(Player player, Pitcher pitcher)
         {
-            customerMoney -= player.recipe.pricePerCup;
-            player.wallet.Money += player.recipe.pricePerCup;
+
+            {
+                customerMoney -= player.recipe.pricePerCup;
+                player.wallet.Money += player.recipe.pricePerCup;
+                pitcher.cupsLeftInPitcher--;
+                didPurchase = true;
+
+                Console.WriteLine(name + " has decided to purchase cup of lemonade!");
+            }
         }
+            
     }
 }

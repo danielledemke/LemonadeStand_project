@@ -20,7 +20,7 @@ namespace LemonadeStand_3DayStarter
         {
             player = new Player();
             random = new Random();
-            PlayOneFullDay();
+            RepeatDay();
             
         }
 
@@ -36,17 +36,28 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("Welcome to Day " + currentDayNumber);
             Day day = new Day();
             Console.WriteLine("The weather for today is " + day.weather.condition + " with a temperature of " + day.weather.temperature + " degrees");
+            Console.WriteLine("You currently have $" + player.wallet.Money);
             Store store = new Store();
-
             store.SellLemons(player);
             store.SellIceCubes(player);
             store.SellSugarCubes(player);
             store.SellCups(player);
             player.ChooseRecipe();
+            
+            
             day.DisplayAmountOfCustomers();
-            day.GetCustomersToDecide(player, day.weather, random);
+            day.GetCustomersToDecide(player, day.weather, random, player.pitcher);
+            
+            Console.WriteLine("After today's sales, you have a total of $" + player.wallet.Money);
             Console.ReadLine();
         }
         
+        public void RepeatDay()
+        {
+            for(int i = 0; i < 8; i++)
+            {
+                PlayOneFullDay();
+            }
+        }
     }
 }
