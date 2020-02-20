@@ -20,8 +20,9 @@ namespace LemonadeStand_3DayStarter
         {
             UserInterface.DisplayGameRules();
             player = new Player();
+            UserInterface.SetUserName(player);
             random = new Random();
-            RepeatDay();
+            RepeatDays();
             
         }
 
@@ -35,6 +36,8 @@ namespace LemonadeStand_3DayStarter
             Day day = new Day();
             Console.WriteLine("The weather for today is " + day.weather.condition + " with a temperature of " + day.weather.temperature + " degrees");
             Console.WriteLine("You currently have $" + player.wallet.Money);
+            UserInterface.DisplayInventory(player);
+            UserInterface.DisplayNoteForCups();
             Store store = new Store();
             store.SellLemons(player);
             store.SellIceCubes(player);
@@ -48,8 +51,9 @@ namespace LemonadeStand_3DayStarter
             Console.ReadLine();
         }
         
-        public void RepeatDay()
+        public void RepeatDays()
         {
+            
             for(int i = 0; i < 8; i++)
             {
                 PlayOneFullDay();

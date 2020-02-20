@@ -25,7 +25,8 @@ namespace LemonadeStand_3DayStarter
         }
         public static void DisplayGameRules()
         {
-            Console.WriteLine("Welcome to the game of Lemonade Stand! You made a good choice when you decided to play.");
+            Console.WriteLine("Greetings! Welcome to the game of Lemonade Stand!");
+            Console.WriteLine("Now you get to relive those childhood memories of opening your own lemonade stand.");
             Console.WriteLine("How To Play:\n");
             Console.WriteLine("Your lemonade stand will be open for 7 days. At the beginning of each day, you will get to see the weather forecast and purchase amount of ingredients based on what you think the demand will be!");
             Console.WriteLine("After buying ingredients, you will set your recipe for each day to specify how much of an item goes into each pitcher you make.");
@@ -34,6 +35,25 @@ namespace LemonadeStand_3DayStarter
             Console.ReadLine();
         }
 
+        public static void DisplayInventory(Player player)
+        {
+            Console.WriteLine("You have " + player.inventory.lemons.Count + " lemons");
+            Console.WriteLine("You have " + player.inventory.iceCubes.Count + " ice cubes");
+            Console.WriteLine("You have " + player.inventory.sugarCubes.Count + " sugar cubes");
+            Console.WriteLine("You have " + player.inventory.cups.Count + " cups");
+        }
+
+        public static void DisplayNoteForCups()
+        {
+            Console.WriteLine("Note: you must have at least 10 cups to make a pitcher of lemonade");
+        }
+
+        public static void SetUserName(Player player)
+        {
+            //Here I used Interface Segregation principle. I originally had this method in Player class, but I thought it would be a better fit to have in User Interface instead so not to force a class use a method that doesn't fit
+            Console.WriteLine("So what is your name?: \n");
+            player.name = Console.ReadLine();
+        }
 
     }
 }

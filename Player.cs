@@ -20,7 +20,6 @@ namespace LemonadeStand_3DayStarter
         {
             inventory = new Inventory();
             wallet = new Wallet();
-            SetUserName();
             pitcher = new Pitcher();
         }
 
@@ -39,9 +38,10 @@ namespace LemonadeStand_3DayStarter
             recipe.pricePerCup = double.Parse(Console.ReadLine());
 
         }
-
+        
         public void MakePitcher()
         {
+            
             {
                 pitcher.cupsLeftInPitcher = 10;
                 inventory.lemons.RemoveRange(0,recipe.amountOfLemons);
@@ -52,11 +52,7 @@ namespace LemonadeStand_3DayStarter
             }
            
         }
-        public void SetUserName()
-        {
-            Console.WriteLine("So what is your name?: \n");
-            name = Console.ReadLine();
-        }
+        
 
         public void KeepLemonadeStocked()
         {
@@ -78,6 +74,7 @@ namespace LemonadeStand_3DayStarter
         }
         public void CheckInventoryAmount()
         {
+            //Here I used Singular Responsibility to break down this method to only do one thing. Originally, I had my game checking inventory levels inside of another method
             if (inventory.lemons.Count >= recipe.amountOfLemons && inventory.sugarCubes.Count >= recipe.amountOfSugarCubes && inventory.iceCubes.Count >= recipe.amountOfIceCubes && inventory.cups.Count >= 10)
             {
                 MakePitcher();

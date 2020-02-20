@@ -95,7 +95,7 @@ namespace LemonadeStand_3DayStarter
                 }
                 if(pitcher.cupsLeftInPitcher == 0)
             {
-                Console.WriteLine("You ran out of lemonade to sell!"); 
+                Console.WriteLine("You ran out of inventory to make lemonade!"); 
             }
         }
 
